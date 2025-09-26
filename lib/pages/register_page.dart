@@ -6,7 +6,11 @@ class RegisterPage extends StatelessWidget {
   //email and pw controllers
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
-  RegisterPage({super.key});
+  final TextEditingController _confirmpwController = TextEditingController();
+
+  void Function()? onTap;
+
+  RegisterPage({super.key,required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,7 @@ class RegisterPage extends StatelessWidget {
             size: 60, color: Theme.of(context).colorScheme.primary),
         const SizedBox(height: 50),
         Text(
-          "Welcome back, you've been missed!",
+          "Let's create an account for you",
           style: TextStyle(
               color: Theme.of(context).colorScheme.primary, fontSize: 16),
         ),
@@ -41,7 +45,7 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-//Login Email and Password Form...
+//Email and Password Register Form...
   Widget _buildLoginForm(BuildContext context) {
     return Column(
       children: [
@@ -55,6 +59,12 @@ class RegisterPage extends StatelessWidget {
           obscureText: true,
           controller: _pwController,
         ),
+        const SizedBox(height: 10),
+        MyTextfield(
+          hintText: "Confirm password",
+          obscureText: true,
+          controller: _confirmpwController,
+        ),
         const SizedBox(height: 25),
         MyButton(
           text: 'Register',
@@ -66,14 +76,17 @@ class RegisterPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Not a member? ',
+              'Already have an account?',
               style: TextStyle(color: Theme.of(context).colorScheme.primary),
             ),
-            Text(
-              'Register now',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary),
+            GestureDetector(
+              onTap: onTap,
+              child: Text(
+                'Login now',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary),
+              ),
             ),
           ],
         )

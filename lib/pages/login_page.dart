@@ -6,7 +6,9 @@ class LoginPage extends StatelessWidget {
   //email and pw controllers
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
-   LoginPage({super.key});
+
+  void Function()? onTap;
+   LoginPage({super.key,required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +59,14 @@ class LoginPage extends StatelessWidget {
             Text('Not a member? '
             ,style: TextStyle(color: Theme.of(context).colorScheme.primary),
             ),
-            Text('Register now',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.primary
-            ),
+            GestureDetector(
+              onTap: onTap,
+              child: Text('Register now',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.primary
+              ),
+              ),
             ),
 
 
