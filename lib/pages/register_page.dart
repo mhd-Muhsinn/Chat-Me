@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class RegisterPage extends StatelessWidget {
   //email and pw controllers
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
   final TextEditingController _confirmpwController = TextEditingController();
 
@@ -17,7 +18,7 @@ class RegisterPage extends StatelessWidget {
     if (_pwController.text == _confirmpwController.text) {
       try {
         _auth.signUpWithEmailPassword(
-            _emailController.text, _pwController.text);
+            _emailController.text, _pwController.text,_nameController.text);
       } catch (e) {
         showDialog(context: context, builder: (context) => AlertDialog(
           title: Text(e.toString()),
@@ -71,6 +72,11 @@ class RegisterPage extends StatelessWidget {
   Widget _buildLoginForm(BuildContext context) {
     return Column(
       children: [
+      MyTextfield(
+            hintText: "Name",
+            obscureText: false,
+            controller: _nameController),
+        const SizedBox(height: 10),
         MyTextfield(
             hintText: "Email",
             obscureText: false,
